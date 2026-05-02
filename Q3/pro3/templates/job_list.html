@@ -1,0 +1,33 @@
+<h2>Job List</h2>
+
+<a href="{% url 'job_create' %}">Add Job</a>
+
+<form method="get">
+    <select name="company">
+        <option value="">All</option>
+        {% for c in companies %}
+            <option value="{{ c.id }}">{{ c.name }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Filter</button>
+</form>
+
+<table border="1">
+    <tr>
+        <th>Title</th>
+        <th>Company</th>
+        <th>Location</th>
+        <th>Action</th>
+    </tr>
+
+    {% for job in jobs %}
+    <tr>
+        <td>{{ job.title }}</td>
+        <td>{{ job.company.name }}</td>
+        <td>{{ job.location }}</td>
+        <td>
+            <a href="{% url 'job_detail' job.id %}">View</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>

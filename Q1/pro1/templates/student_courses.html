@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Enrollment Successful</h2>
+    <p>{{ student.name }} enrolled in:</p>
+
+    <ul>
+        {% for course in student.courses.all %}
+            <li>{{ course.name}}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'course_list' %}">
+    <button>Back to Home</button>
+    </a>
+</body>
+</html>

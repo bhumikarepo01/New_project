@@ -1,0 +1,30 @@
+<h2>{{ event.title }}</h2>
+
+<p>{{ event.description }}</p>
+<p><b>Date:</b> {{ event.date }}</p>
+<p><b>Location:</b> {{ event.location }}</p>
+<p><b>Capacity:</b> {{ event.capacity }}</p>
+
+<hr>
+
+<h3>Register for this Event</h3>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Register</button>
+</form>
+
+<hr>
+
+<h3>Attendees</h3>
+
+<ul>
+    {% for a in attendees %}
+        <li>{{ a.name }} ({{ a.email }})</li>
+    {% empty %}
+        <li>No attendees yet</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'event_list' %}">Back</a>

@@ -1,0 +1,33 @@
+<h2>{{ product.name }}</h2>
+
+<p>{{ product.description }}</p>
+<p><b>Price:</b> ₹ {{ product.price }}</p>
+
+{% if product.image %}
+    <img src="{{ product.image.url }}" width="200">
+{% endif %}
+
+<hr>
+
+<h3>Reviews</h3>
+
+{% for r in reviews %}
+<p>
+    <b>{{ r.user_name }}</b> (Rating: {{ r.rating }})<br>
+    {{ r.comment }}
+</p>
+{% empty %}
+<p>No reviews yet</p>
+{% endfor %}
+
+<hr>
+
+<h3>Add Review</h3>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+</form>
+
+<a href="{% url 'product_list' %}">Back</a>
